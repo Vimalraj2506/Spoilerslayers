@@ -19,20 +19,16 @@
     }
     .button-container {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       margin-bottom: 10px;
     }
     button {
       padding: 8px 15px;
       cursor: pointer;
     }
-    #status {
-      text-align: center;
-    }
-    /* Simplified keywords section styles */
+    /* Keywords section styles */
     .keywords-section {
       margin-top: 20px;
-      display: none;
     }
     #keywordInput {
       width: 70%;
@@ -43,7 +39,6 @@
     }
     #keywordsList {
       margin-top: 10px;
-      /* Removed max-height and overflow for simplicity */
     }
     .keyword-item {
       display: flex;
@@ -62,19 +57,7 @@
 <body>
   <h1>Spoiler Blocker</h1>
   
-  <div id="authSection">
-    <input type="email" id="email" placeholder="Enter email">
-    <input type="password" id="password" placeholder="Enter password">
-    
-    <div class="button-container">
-      <button id="signUp">Sign Up</button>
-      <button id="login">Login</button>
-    </div>
-    
-    <p id="status">Not logged in</p>
-  </div>
-
-  <!-- Keywords section (hidden until login) -->
+  <!-- Keywords section only -->
   <div id="keywordsSection" class="keywords-section">
     <h2>Spoiler Keywords</h2>
     <div class="input-row">
@@ -83,7 +66,7 @@
     </div>
     <div id="keywordsList"></div>
     <div class="button-container" style="margin-top: 15px;">
-      <button id="logout">Logout</button>
+      <button id="reset">Reset Keywords</button>
     </div>
   </div>
   
