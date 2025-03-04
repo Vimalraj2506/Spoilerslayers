@@ -1,24 +1,25 @@
 {
-    "name": "spoiler-blocker-extension",
-    "version": "0.1.0",
-    "main": "background.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/Vimalraj2506/Spoilerslayers.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/Vimalraj2506/Spoilerslayers/issues"
-    },
-    "homepage": "https://github.com/Vimalraj2506/Spoilerslayers#readme",
-    "description": "",
-    "dependencies": {
-      "axios": "^1.6.2"
-    }
+  "name": "spoiler-blocker-extension",
+  "version": "0.2.0",
+  "main": "background.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vimalraj2506/Spoilerslayers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Vimalraj2506/Spoilerslayers/issues"
+  },
+  "homepage": "https://github.com/Vimalraj2506/Spoilerslayers#readme",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "firebase": "^11.3.1"
   }
-  
+}
