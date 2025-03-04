@@ -1,15 +1,4 @@
-echo node_modules/ > .gitignore
-echo npm-debug.log* >> .gitignore
-echo yarn-debug.log* >> .gitignore
-echo yarn-error.log* >> .gitignore
-echo dist/ >> .gitignore
-echo .DS_Store >> .gitignore
-echo .env >> .gitignore
-echo firebase-debug.log >> .gitignore
-
-# Environment variables
-.env
-.env.local
-.env.development
-.env.test
-.env.production
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
