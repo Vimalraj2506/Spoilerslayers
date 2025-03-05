@@ -1,12 +1,1 @@
-chrome.runtime.onInstalled.addListener(() => {
-  console.log("Spoiler Blocker extension installed");
-});
-
-chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  if (message.action === "getKeywords") {
-      chrome.storage.local.get("keywords", (data) => {
-          sendResponse({ keywords: data.keywords || [] });
-      });
-      return true;
-  }
-});
+chrome.runtime.onInstalled.addListener((()=>{console.log("Spoiler Blocker extension installed")})),chrome.runtime.onMessage.addListener(((e,o,r)=>{if("getKeywords"===e.action)return chrome.storage.local.get("keywords",(e=>{r({keywords:e.keywords||[]})})),!0}));
