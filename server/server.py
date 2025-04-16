@@ -93,4 +93,4 @@ if __name__ == '__main__':
     # 'tools.response_headers.on': True,
     # }
     # }
-    cherrypy.quickstart(SpoilerAPI()) #
+    cherrypy.quickstart(SpoilerAPI())
