@@ -1,28 +1,60 @@
-// Background service worker
-// Handles background tasks and communication with content scripts
+/**
+ * Background service worker for the Spoiler Blocker extension
+ * Handles keyword storage and communication with content scripts
+ */
 
-// Listen for extension installation or update
-chrome.runtime.onInstalled.addListener(() => {
-    console.log('Spoiler Blocker extension installed successfully.');
-  });
-  
-  // Listen for messages from popup or content scripts
-  chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
-    console.log(`Received message: ${JSON.stringify(message)} from`, sender);
-  
-    if (message.action === 'getKeywords') {
-        chrome.storage.local.get('keywords', (data) => {
-            if (chrome.runtime.lastError) {
-                console.error('Error retrieving keywords:', chrome.runtime.lastError);
-                sendResponse({ keywords: [], error: 'Failed to retrieve keywords' });
-            } else {
-                console.log('Sending keywords:', data.keywords || []);
-                sendResponse({ keywords: data.keywords || [] });
-            }
+console.log("Spoiler Blocker background script started");
+
+// Default settings
+const DEFAULT_SETTINGS = {
+  useApiDetection: true,
+  useKeywordDetection: true,
+};
+
+// Listen for installation
+chrome.runtime.onInstalled.addListener((details) => {
+  console.log(
+    "Spoiler Blocker extension installed or updated:",
+    details.reason
+  );
+
+  // Initialize default settings
+  chrome.storage.local.get(
+    ["useApiDetection", "useKeywordDetection"],
+    (result) => {
+      const updates = {};
+
+      if (typeof result.useApiDetection !== "boolean") {
+        updates.useApiDetection = DEFAULT_SETTINGS.useApiDetection;
+      }
+
+      if (typeof result.useKeywordDetection !== "boolean") {
+        updates.useKeywordDetection = DEFAULT_SETTINGS.useKeywordDetection;
+      }
+
+      if (Object.keys(updates).length > 0) {
+        chrome.storage.local.set(updates, () => {
+          console.log("Initialized default settings:", updates);
         });
-        return true; // Required for async response
+      }
     }
-  
-    return false; // Indicates no asynchronous response needed
-  });
-  
+  );
+});
+
+// Listen for messages from popup or content scripts
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log("Background received message:", message.action);
+
+  if (message.action === "getKeywords") {
+    // Retrieve keywords from storage and send to content script
+    chrome.storage.local.get("keywords", (data) => {
+      // Ensure we have at least an empty array if no keywords found
+      const keywords = data.keywords || [];
+      console.log("Sending keywords to content script:", keywords);
+      sendResponse({ keywords: keywords });
+    });
+    return true; // Required for async response
+  }
+});
+
+console.log("Spoiler Blocker background script initialized");
